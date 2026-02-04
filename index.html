@@ -7,107 +7,95 @@
 
   <style>
     :root{
-      --blue1:#0f4c75; --blue2:#0b3c5d; --blue3:#06283d;
-      --gold:#ffd700; --green:#1eb53a;
-      --glass: rgba(255,255,255,.10);
-      --stroke: rgba(255,255,255,.16);
-      --shadow: 0 24px 55px rgba(0,0,0,.35);
+      --bg1:#0f4c75; --bg2:#0b3c5d; --bg3:#06283d;
+      --gold:#ffd700; --green:#1eb53a; --stroke:rgba(255,255,255,.16);
     }
-
-    *{ box-sizing:border-box; }
-
+    *{box-sizing:border-box}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(900px 420px at 18% 10%, rgba(255,215,0,.18), transparent 60%),
-        radial-gradient(900px 420px at 82% 22%, rgba(30,181,58,.16), transparent 55%),
-        radial-gradient(circle at top, var(--blue1), var(--blue2), var(--blue3));
       color:#fff;
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:18px;
+      background:
+        radial-gradient(900px 420px at 18% 10%, rgba(255,215,0,.18), transparent 60%),
+        radial-gradient(900px 420px at 82% 22%, rgba(30,181,58,.16), transparent 55%),
+        radial-gradient(circle at top, var(--bg1), var(--bg2), var(--bg3));
     }
-
     .wrap{
-      width:min(920px,100%);
+      width:min(940px,100%);
       background: linear-gradient(to bottom right, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
       border:1px solid var(--stroke);
       border-radius:24px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 26px 60px rgba(0,0,0,.38);
       backdrop-filter: blur(14px);
       overflow:hidden;
     }
-
-    .hero{
-      padding:20px 18px 14px;
-      text-align:center;
-    }
-
+    .hero{padding:20px 18px 14px;text-align:center}
     .badge{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 14px;
-      border-radius:999px;
-      background: rgba(255,215,0,.14);
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 14px;border-radius:999px;
+      background:rgba(255,215,0,.14);
       border:1px solid rgba(255,215,0,.35);
-      color:var(--gold);
-      font-weight:800;
-      letter-spacing:1.2px;
-      text-transform:uppercase;
-      font-size:.78rem;
+      color:var(--gold);font-weight:900;
+      letter-spacing:1.2px;text-transform:uppercase;font-size:.78rem
     }
-
-    h1{
-      margin:14px 0 6px;
-      font-size: clamp(1.55rem, 3.3vw, 2.6rem);
-      font-weight: 900;
-      letter-spacing:.6px;
-      line-height:1.1;
-    }
-
-    .sub{
-      margin:0 auto;
-      max-width: 54rem;
-      opacity:.94;
-      line-height:1.55;
-      font-size: 1.02rem;
-    }
+    h1{margin:14px 0 6px;font-size:clamp(1.55rem,3.3vw,2.6rem);font-weight:900;line-height:1.1}
+    .sub{margin:0 auto;max-width:56rem;opacity:.94;line-height:1.55;font-size:1.02rem}
 
     .content{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:14px;
       padding: 0 18px 18px;
     }
-
     .card{
       background: rgba(0,0,0,.18);
       border:1px solid rgba(255,255,255,.12);
       border-radius:18px;
       padding:16px;
     }
+    .small{font-size:.95rem;opacity:.94;line-height:1.5;margin:0}
 
-    .small{
-      font-size:.95rem;
-      opacity:.94;
-      line-height:1.5;
-      margin:0;
-    }
-
-    .quote{
+    .stats{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:10px;
       margin-top:12px;
-      padding:14px;
-      border-radius:14px;
-      background: rgba(255,215,0,.10);
-      border:1px solid rgba(255,215,0,.28);
-      line-height:1.5;
-      font-size: .98rem;
-      font-style: italic;
     }
+    .stat{
+      padding:12px;
+      border-radius:16px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      text-align:center;
+    }
+    .stat b{display:block;font-size:.85rem;opacity:.9;margin-bottom:4px}
+    .stat span{font-size:1.15rem;font-weight:900}
+
+    .barWrap{
+      margin-top:10px;
+      padding:10px;
+      border-radius:16px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .bar{
+      height:12px;border-radius:999px;
+      background: rgba(255,255,255,.12);
+      overflow:hidden;
+    }
+    .fill{
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(30,181,58,1), rgba(255,215,0,.95));
+      border-radius:999px;
+      transition: width .35s ease;
+    }
+    .barNote{margin-top:8px;font-size:.9rem;opacity:.92;text-align:center}
 
     .grid{
       display:grid;
@@ -115,7 +103,6 @@
       gap:10px;
       margin-top:12px;
     }
-
     .amt{
       border:1px solid rgba(255,255,255,.12);
       border-radius:16px;
@@ -126,70 +113,23 @@
       background: rgba(255,255,255,.12);
       transition: transform .06s ease, background .18s ease, border-color .18s ease;
     }
-    .amt:hover{ background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.20); }
-    .amt:active{ transform: scale(.98); }
+    .amt:hover{background: rgba(255,255,255,.18);border-color: rgba(255,255,255,.20)}
+    .amt:active{transform: scale(.98)}
     .amt.sel{
       background: linear-gradient(135deg, rgba(30,181,58,.95), rgba(30,181,58,.78));
       border-color: rgba(30,181,58,.55);
       box-shadow: 0 14px 26px rgba(30,181,58,.22);
     }
 
-    .row{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
+    .row{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px}
     input{
       width: 260px; max-width:100%;
-      padding:12px 14px;
-      border-radius:16px;
+      padding:12px 14px;border-radius:16px;
       border:1px solid rgba(255,255,255,.20);
       background: rgba(255,255,255,.08);
-      color:#fff;
-      outline:none;
-      font-size:1rem;
+      color:#fff;outline:none;font-size:1rem;
     }
-    input::placeholder{ color: rgba(255,255,255,.72); }
-
-    .payHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-      flex-wrap:wrap;
-    }
-
-    .pill{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.12);
-      font-weight:800;
-      font-size:.85rem;
-    }
-
-    .kpi{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:10px;
-    }
-
-    .kpi > div{
-      padding:12px;
-      border-radius:16px;
-      background: rgba(0,0,0,.18);
-      border:1px solid rgba(255,255,255,.12);
-    }
-
-    .kpi b{ display:block; font-size:.85rem; opacity:.9; margin-bottom:4px; }
-    .kpi span{ font-size:1.05rem; font-weight:900; }
+    input::placeholder{color:rgba(255,255,255,.72)}
 
     .tillBox{
       margin-top:10px;
@@ -200,54 +140,87 @@
       box-shadow: 0 18px 34px rgba(30,181,58,.20);
       text-align:center;
     }
+    .tillLabel{font-weight:900;letter-spacing:1.6px;text-transform:uppercase;font-size:.85rem;opacity:.95}
+    .tillNum{margin-top:8px;font-size:2.2rem;font-weight:900;letter-spacing:3px}
 
-    .tillLabel{
-      font-weight:900;
-      letter-spacing:1.6px;
-      text-transform:uppercase;
-      font-size:.85rem;
+    .kpi{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .kpi > div{
+      padding:12px;border-radius:16px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      text-align:center;
+    }
+    .kpi b{display:block;font-size:.85rem;opacity:.9;margin-bottom:4px}
+    .kpi span{font-size:1.05rem;font-weight:900}
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;justify-content:center}
+    .btn{border:0;border-radius:16px;padding:12px 14px;font-weight:900;cursor:pointer}
+    .primary{background: var(--gold); color:#0b3c5d;}
+    .ghost{background: rgba(255,255,255,.10); color:#fff; border:1px solid rgba(255,255,255,.14);}
+    .danger{background: rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.12);}
+
+    .toast{
+      margin-top:10px;
+      font-size:.95rem;
+      text-align:center;
       opacity:.95;
+      display:none;
+      padding:10px 12px;
+      border-radius:14px;
+      background: rgba(255,215,0,.12);
+      border:1px solid rgba(255,215,0,.28);
     }
 
-    .tillNum{
-      margin-top:8px;
-      font-size:2.2rem;
+    .footer{text-align:center;padding:12px 14px 16px;opacity:.86;font-size:.9rem;border-top:1px solid rgba(255,255,255,.10)}
+
+    /* Thanks modal */
+    .modalOverlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      padding:18px;
+      z-index:9999;
+    }
+    .modal{
+      max-width:520px;
+      margin:10vh auto;
+      background: rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:18px;
+      padding:18px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 24px 55px rgba(0,0,0,.35);
+    }
+    .modalTitle{
       font-weight:900;
-      letter-spacing:3px;
+      font-size:1.15rem;
+      color: var(--gold);
+      margin-bottom:8px;
     }
-
-    .actions{
+    .modalText{
+      line-height:1.55;
+      opacity:.95;
+      margin-bottom:14px;
+      font-size:.98rem;
+    }
+    .modalActions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:12px;
-      justify-content:center;
-    }
-
-    .btn{
-      border:0;
-      border-radius:16px;
-      padding:12px 14px;
-      font-weight:900;
-      cursor:pointer;
-    }
-
-    .primary{ background: var(--gold); color:#0b3c5d; }
-    .ghost{ background: rgba(255,255,255,.10); color:#fff; border:1px solid rgba(255,255,255,.14); }
-    .danger{ background: rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.12); }
-
-    .footer{
-      text-align:center;
-      padding: 12px 14px 16px;
-      opacity:.86;
-      font-size:.9rem;
-      border-top: 1px solid rgba(255,255,255,.10);
+      justify-content:flex-end;
     }
 
     @media (max-width: 860px){
-      .content{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .tillNum{ font-size:2.0rem; }
+      .content{grid-template-columns:1fr}
+      .grid{grid-template-columns: repeat(2, minmax(0,1fr))}
+      .stats{grid-template-columns:1fr}
+      .tillNum{font-size:2.0rem}
     }
   </style>
 </head>
@@ -259,8 +232,19 @@
       <div class="badge">RAMADAN IFTAR DRIVE • ELWAK</div>
       <h1>Feed a fasting family for the sake of Allah</h1>
       <p class="sub">
-        Select a challenge amount (or enter any amount). Pay to the Till number, then confirm via WhatsApp so we can record your contribution.
+        Select an amount, pay to the Till number, then tap <b>✅ I’ve Participated</b> to update our live total and participant count.
       </p>
+
+      <div class="stats">
+        <div class="stat"><b>Total Raised</b><span id="totalRaised">KSh 0</span></div>
+        <div class="stat"><b>Participants</b><span id="participants">0</span></div>
+        <div class="stat"><b>Remaining</b><span id="remaining">KSh 500,000</span></div>
+      </div>
+
+      <div class="barWrap">
+        <div class="bar"><div class="fill" id="fill"></div></div>
+        <div class="barNote" id="barNote">0% of target reached</div>
+      </div>
     </div>
 
     <div class="content">
@@ -287,29 +271,14 @@
           <input id="customAmt" type="number" min="1" inputmode="numeric" placeholder="Type any amount (e.g., 750)" />
         </div>
 
-        <div class="quote">
-          <b style="color:var(--gold); font-style:normal;">Slogan:</b>
-          Feed a fasting family for the sake of Allah, and earn His mercy and blessings.
-        </div>
+        <div class="toast" id="toast"></div>
       </div>
 
       <!-- RIGHT -->
       <div class="card">
-        <div class="payHead">
-          <div class="pill">1) Select amount</div>
-          <div class="pill">2) Pay (normal M-Pesa steps)</div>
-          <div class="pill">3) Confirm</div>
-        </div>
-
         <div class="kpi">
-          <div>
-            <b>Selected Amount</b>
-            <span id="selAmt">None</span>
-          </div>
-          <div>
-            <b>Reference Code</b>
-            <span id="ref">—</span>
-          </div>
+          <div><b>Selected Amount</b><span id="selAmt">None</span></div>
+          <div><b>Reference</b><span id="ref">—</span></div>
         </div>
 
         <div class="tillBox">
@@ -318,15 +287,16 @@
         </div>
 
         <p class="small" style="margin-top:10px;">
-          Tap <b>Pay with M-Pesa</b> for a guided prompt. You will still pay using the normal steps on your phone.
-          After paying, tap <b>Confirm via WhatsApp</b>.
+          <b>Pay normally:</b> M-Pesa → Lipa na M-Pesa → Buy Goods → Till <b>4341738</b> → Amount → Pay.
+          Then tap <b>✅ I’ve Participated</b>.
         </p>
 
         <div class="actions">
           <button class="btn primary" onclick="openMpesa()">Pay with M-Pesa</button>
           <button class="btn ghost" onclick="copyTill()">Copy Till</button>
+          <button class="btn ghost" onclick="shareWhatsApp()">Share on WhatsApp</button>
           <button class="btn ghost" onclick="copyAmount()">Copy Amount</button>
-          <button class="btn primary" onclick="confirmWhatsApp()">Confirm via WhatsApp</button>
+          <button class="btn primary" onclick="iParticipated()">✅ I’ve Participated</button>
           <button class="btn danger" onclick="resetAll()">Reset</button>
         </div>
       </div>
@@ -336,9 +306,24 @@
     <div class="footer">Ramadan • Mercy • Shared Responsibility</div>
   </div>
 
+  <!-- THANK YOU MODAL -->
+  <div id="thanksModal" class="modalOverlay">
+    <div class="modal">
+      <div class="modalTitle">جزاك الله خيرًا — Thank you!</div>
+      <div id="thanksText" class="modalText">Your participation has been recorded.</div>
+      <div class="modalActions">
+        <button class="btn ghost" onclick="shareWhatsApp()">Share on WhatsApp</button>
+        <button class="btn primary" onclick="closeThanks()">Close</button>
+      </div>
+    </div>
+  </div>
+
 <script>
-  const ORG_WHATSAPP_NUMBER = "254727496308";
+  // ====== CONFIG ======
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzKuajt6yz4L2DnNbDuTf5V9DgdfN4pbLN5OeOvXBpzum-TugnV0x11YpT1e7TiSV-N/exec";
+  const TARGET = 500000;
   const TILL = "4341738";
+  // ====================
 
   let selectedAmount = null;
 
@@ -346,6 +331,30 @@
   const refEl = document.getElementById("ref");
   const customAmt = document.getElementById("customAmt");
   const buttons = document.querySelectorAll(".amt");
+
+  const totalRaisedEl = document.getElementById("totalRaised");
+  const participantsEl = document.getElementById("participants");
+  const remainingEl = document.getElementById("remaining");
+  const fillEl = document.getElementById("fill");
+  const barNoteEl = document.getElementById("barNote");
+  const toastEl = document.getElementById("toast");
+
+  const thanksModal = document.getElementById("thanksModal");
+  const thanksText = document.getElementById("thanksText");
+
+  function openThanks(msg){
+    thanksText.textContent = msg;
+    thanksModal.style.display = "block";
+  }
+  function closeThanks(){
+    thanksModal.style.display = "none";
+  }
+
+  function showToast(msg){
+    toastEl.style.display = "block";
+    toastEl.textContent = msg;
+    setTimeout(()=>{ toastEl.style.display = "none"; }, 2600);
+  }
 
   function genRef(){
     const d = new Date();
@@ -396,35 +405,39 @@
   });
 
   function copyTill(){
-    navigator.clipboard.writeText(TILL).then(()=> alert("Till copied: " + TILL));
+    navigator.clipboard.writeText(TILL).then(()=> showToast("Till copied: " + TILL));
   }
 
   function copyAmount(){
     const amt = selectedAmount || Number(localStorage.getItem("elw_amt"));
-    if(!amt) return alert("Select an amount first.");
-    navigator.clipboard.writeText(String(amt)).then(()=> alert("Amount copied: KSh " + amt));
+    if(!amt) return showToast("Select an amount first.");
+    navigator.clipboard.writeText(String(amt)).then(()=> showToast("Amount copied: KSh " + amt));
+  }
+
+  function shareWhatsApp(){
+    const msg =
+`RAMADAN IFTAR DRIVE | ELWAK
+Feed a fasting family for the sake of Allah.
+Choose a challenge amount and participate here:
+${location.href}
+
+Buy Goods Till: ${TILL}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, "_blank");
   }
 
   function openMpesa(){
     const amt = selectedAmount || Number(localStorage.getItem("elw_amt"));
     const ref = refEl.textContent;
 
-    if(!amt){
-      alert("Please select an amount first.");
-      return;
-    }
+    if(!amt) { showToast("Select an amount first."); return; }
 
-    // Copy till (reliable)
-    navigator.clipboard.writeText(`${TILL}`).catch(()=>{});
-
-    // Optional attempt: open SIM Toolkit (may or may not work)
+    // Optional: try opening SIM Toolkit (may work on some Android phones)
     const intents = [
       "intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk;end",
       "intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk2;end"
     ];
     try { window.location.href = intents[0]; } catch(e){}
 
-    // Always show clear instructions
     setTimeout(() => {
       alert(
 `PAY WITH M-PESA (NORMAL STEPS)
@@ -432,31 +445,61 @@
 1) Open M-Pesa
 2) Lipa na M-Pesa
 3) Buy Goods
-4) Till Number: ${TILL}
+4) Till: ${TILL}
 5) Amount: KSh ${amt.toLocaleString()}
-6) Pay, then return and tap “Confirm via WhatsApp”
+6) Pay, then return and tap ✅ I’ve Participated
 
-Reference: ${ref && ref !== "—" ? ref : "(select amount to generate)"}`
+Reference: ${ref && ref !== "—" ? ref : "(select amount)"}`
       );
     }, 350);
   }
 
-  function confirmWhatsApp(){
-    const r = refEl.textContent;
-    const amt = selectedAmount || Number(localStorage.getItem("elw_amt"));
-    if(!amt || !r || r==="—"){
-      alert("Select an amount first.");
-      return;
-    }
-    const msg =
-`RAMADAN IFTAR DRIVE | ELWAK
-I have paid: KSh ${amt}
-Till: ${TILL}
-Reference: ${r}
-May Allah accept.`;
+  async function refreshTotals(){
+    try{
+      const res = await fetch(SCRIPT_URL, { method:"GET" });
+      const data = await res.json();
+      if(!data.ok) return;
 
-    const url = `https://wa.me/${ORG_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, "_blank");
+      const total = Number(data.total || 0);
+      const count = Number(data.count || 0);
+
+      totalRaisedEl.textContent = "KSh " + total.toLocaleString();
+      participantsEl.textContent = count.toLocaleString();
+
+      const remaining = Math.max(0, TARGET - total);
+      remainingEl.textContent = "KSh " + remaining.toLocaleString();
+
+      const pct = Math.min(100, (total / TARGET) * 100);
+      fillEl.style.width = pct.toFixed(1) + "%";
+      barNoteEl.textContent = `${pct.toFixed(1)}% of target reached`;
+    }catch(e){
+      // ignore
+    }
+  }
+
+  async function iParticipated(){
+    const amt = selectedAmount || Number(localStorage.getItem("elw_amt"));
+    const ref = refEl.textContent;
+
+    if(!amt){ showToast("Select an amount first."); return; }
+
+    try{
+      const res = await fetch(SCRIPT_URL, {
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body: JSON.stringify({ amount: amt, ref })
+      });
+      const data = await res.json();
+      if(data.ok){
+        showToast("Recorded ✅ Thank you!");
+        openThanks(`Your participation of KSh ${amt.toLocaleString()} has been recorded. May Allah accept it and multiply your reward.`);
+        await refreshTotals();
+      }else{
+        showToast("Could not record. Try again.");
+      }
+    }catch(e){
+      showToast("Network error. Try again.");
+    }
   }
 
   function resetAll(){
@@ -477,6 +520,9 @@ May Allah accept.`;
     selectedAmount = savedAmt;
     selAmtEl.textContent = `KSh ${savedAmt.toLocaleString()}`;
   }
+
+  refreshTotals();
+  setInterval(refreshTotals, 30000);
 </script>
 </body>
 </html>
