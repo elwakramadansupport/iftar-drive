@@ -780,66 +780,90 @@
       // Copy till number to clipboard for convenience
       navigator.clipboard.writeText(CONFIG.TILL_NUMBER).catch(() => {});
 
-      // Try to open M-Pesa app using various methods
-      let attemptedOpen = false;
+      // First, try to open SIM Toolkit M-Pesa (for users without the app)
+      let opened = false;
 
-      // Method 1: Try M-Pesa app deep link (for newer M-Pesa app versions)
+      // Method 1: SIM Toolkit (most reliable for basic phones and users without app)
       try {
-        const mpesaDeepLink = `mpesa://pay?businessNumber=${CONFIG.TILL_NUMBER}&amount=${amount}&accountReference=${reference}`;
-        window.location.href = mpesaDeepLink;
-        attemptedOpen = true;
-        showToast('📱 Opening M-Pesa app...');
+        const stkIntents = [
+          'intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk;end',
+          'intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk2;end',
+          'intent://#Intent;SEL;component=com.android.stk/.StkMenuActivity;end'
+        ];
+        
+        // Try all SIM toolkit methods
+        stkIntents.forEach(intent => {
+          try {
+            window.location.href = intent;
+            opened = true;
+          } catch (e) {
+            console.log('STK intent failed:', e);
+          }
+        });
+        
+        if (opened) {
+          showToast('📱 Opening M-Pesa SIM Toolkit...');
+        }
       } catch (e) {
-        console.log('M-Pesa deep link failed:', e);
+        console.log('SIM Toolkit method failed:', e);
       }
 
-      // Method 2: Try Android M-Pesa app intent
-      if (!attemptedOpen) {
+      // Method 2: Try M-Pesa app (for users who have it installed)
+      if (!opened) {
         try {
           const mpesaIntent = 'intent://pay#Intent;scheme=mpesa;package=com.safaricom.mpesa;end';
           window.location.href = mpesaIntent;
-          attemptedOpen = true;
+          opened = true;
           showToast('📱 Opening M-Pesa app...');
         } catch (e) {
-          console.log('M-Pesa intent failed:', e);
+          console.log('M-Pesa app intent failed:', e);
         }
       }
 
-      // Method 3: Try SIM Toolkit (opens M-Pesa menu on SIM)
-      if (!attemptedOpen) {
+      // Method 3: Alternative M-Pesa deep link
+      if (!opened) {
         try {
-          const stkIntents = [
-            'intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk;end',
-            'intent://#Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;package=com.android.stk2;end'
-          ];
-          window.location.href = stkIntents[0];
-          attemptedOpen = true;
+          const mpesaDeepLink = `mpesa://pay?businessNumber=${CONFIG.TILL_NUMBER}&amount=${amount}`;
+          window.location.href = mpesaDeepLink;
+          opened = true;
           showToast('📱 Opening M-Pesa...');
         } catch (e) {
-          console.log('STK method failed:', e);
+          console.log('M-Pesa deep link failed:', e);
         }
       }
 
       // Show instructions after attempting to open
       setTimeout(() => {
+        const instructions = opened 
+          ? 'If M-Pesa didn\'t open automatically, please follow these steps:' 
+          : 'Please follow these steps:';
+
         alert(
 `💳 M-PESA PAYMENT INSTRUCTIONS
 
-${attemptedOpen ? 'If M-Pesa didn\'t open automatically, please:' : 'Please follow these steps:'}
+${instructions}
 
-1️⃣ Open M-Pesa app (or go to your SIM toolkit)
-2️⃣ Select "Lipa na M-Pesa"
-3️⃣ Select "Buy Goods and Services"
-4️⃣ Enter Till Number: ${CONFIG.TILL_NUMBER} ✅ (copied!)
-5️⃣ Enter Amount: KSh ${amount.toLocaleString()}
-6️⃣ Enter your M-Pesa PIN
-7️⃣ Confirm payment
+📱 **For SIM Toolkit Users:**
+1️⃣ Go to your phone's SIM Toolkit/STK menu
+2️⃣ Select M-Pesa
+3️⃣ Select "Lipa na M-Pesa"
+4️⃣ Select "Buy Goods and Services"
+5️⃣ Enter Till: ${CONFIG.TILL_NUMBER} ✅ (copied!)
+6️⃣ Enter Amount: KSh ${amount.toLocaleString()}
+7️⃣ Enter PIN and confirm
 
-📝 Your Reference: ${reference}
+📱 **For M-Pesa App Users:**
+1️⃣ Open M-Pesa app
+2️⃣ Select "Lipa na M-Pesa" → "Buy Goods"
+3️⃣ Enter Till: ${CONFIG.TILL_NUMBER} ✅ (copied!)
+4️⃣ Enter Amount: KSh ${amount.toLocaleString()}
+5️⃣ Enter PIN and confirm
 
-After completing payment, return here and click "I've Paid" to record your contribution.`
+📝 Reference: ${reference}
+
+After payment, return here and click "I've Paid"`
         );
-      }, 1000);
+      }, 1200);
     }
 
     function shareOnWhatsApp() {
