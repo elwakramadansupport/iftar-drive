@@ -514,8 +514,10 @@ Reference: ${ref && ref !== "—" ? ref : "(select amount)"}`
 
   // Restore after refresh
   const savedAmt = Number(localStorage.getItem("elw_amt"));
-  const savedRef = localStorage.getItem("elw_ref");
-  if(savedRef) refEl.textContent = savedRef;
+  const savedRef = document.getElementById("ref");
+  const savedRefVal = localStorage.getItem("elw_ref");
+  if(savedRefVal) savedRef.textContent = savedRefVal;
+
   if(savedAmt){
     selectedAmount = savedAmt;
     selAmtEl.textContent = `KSh ${savedAmt.toLocaleString()}`;
