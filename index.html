@@ -117,14 +117,13 @@
       </div>
 
       <p class="mini">
-        <b>How to pay:</b> Open M-Pesa → Lipa na M-Pesa → Buy Goods → Enter Till <b>4341738</b> →
-        Enter Amount → Pay. <br/>
-        After paying, click <b>Confirm via WhatsApp</b> so we can track your contribution using the reference code.
+        Click <b>Pay with M-Pesa</b> to open M-Pesa on your phone, then enter Till <b>4341738</b> and your amount. 
+        After paying, click <b>Confirm via WhatsApp</b> to complete your donation.
       </p>
 
       <div class="actions">
-        <button class="aBtn primary" onclick="copyTill()">Copy Till</button>
-        <button class="aBtn secondary" onclick="copyRef()">Copy Reference</button>
+        <button class="aBtn primary" onclick="openMpesa()">Pay with M-Pesa</button>
+        <button class="aBtn secondary" onclick="copyTill()">Copy Till Number</button>
         <button class="aBtn primary" onclick="confirmWhatsApp()">Confirm via WhatsApp</button>
         <button class="aBtn danger" onclick="resetAll()">Reset</button>
       </div>
@@ -194,8 +193,28 @@
   });
 
   function copyTill(){
-    navigator.clipboard.writeText(TILL).then(()=> alert("Till number copied."));
+    navigator.clipboard.writeText(TILL).then(()=> alert("Till number copied: " + TILL));
   }
+  
+  function openMpesa(){
+    const amt = selectedAmount || Number(localStorage.getItem("elw_amt"));
+    if(!amt){
+      alert("Please select an amount first.");
+      return;
+    }
+    // Copy till number first
+    navigator.clipboard.writeText(TILL);
+    
+    // Try to open M-Pesa app (works on most Android phones with Safaricom)
+    const mpesaUrl = `mpesa://till/${TILL}`;
+    window.location.href = mpesaUrl;
+    
+    // Fallback: show instructions if app doesn't open
+    setTimeout(() => {
+      alert(`Till ${TILL} copied! If M-Pesa didn't open:\n\n1. Open M-Pesa app\n2. Select Lipa na M-Pesa\n3. Select Buy Goods\n4. Enter Till: ${TILL}\n5. Enter Amount: KSh ${amt.toLocaleString()}\n6. Complete payment`);
+    }, 1000);
+  }
+  
   function copyRef(){
     const r = refEl.textContent;
     if(!r || r==="—") return alert("Select an amount first.");
