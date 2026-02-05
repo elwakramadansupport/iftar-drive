@@ -16,6 +16,7 @@
       --overlay-light: rgba(255, 255, 255, 0.14);
       --overlay-dark: rgba(0, 0, 0, 0.18);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -68,7 +69,7 @@
     }
 
     .subtitle {
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto 20px;
       opacity: 0.94;
       line-height: 1.6;
@@ -142,6 +143,7 @@
       margin-bottom: 12px;
       color: var(--accent-gold);
       opacity: 0.95;
+      line-height: 1.55;
     }
 
     .amount-grid {
@@ -323,7 +325,7 @@
     }
 
     .modal {
-      max-width: 540px;
+      max-width: 560px;
       margin: 10vh auto;
       background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -334,7 +336,7 @@
     }
 
     .modal-title { font-weight: 900; font-size: 1.2rem; color: var(--accent-gold); margin-bottom: 10px; }
-    .modal-text { line-height: 1.65; opacity: 0.95; margin-bottom: 18px; font-size: 1rem; white-space: pre-line; }
+    .modal-text { line-height: 1.7; opacity: 0.95; margin-bottom: 18px; font-size: 1rem; white-space: pre-line; }
 
     .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
 
@@ -439,11 +441,12 @@
         </div>
 
         <div class="instructions">
-          <strong>Fastest:</strong> Tap <b>Pay with M-Pesa</b>. If M-Pesa exists, it opens. If not, your phone opens <b>*334#</b>.
+          <strong>Fastest:</strong> Tap <b>Pay with M-Pesa</b>. Your phone opens the dialer with <b>*334#</b>.
+          Till & amount are copied for you.
         </div>
 
         <div class="action-buttons">
-          <button class="button button-primary" onclick="initiatePayment()">💳 Pay with M-Pesa</button>
+          <button class="button button-primary" onclick="payNow()">💳 Pay with M-Pesa</button>
           <button class="button button-secondary" onclick="copyTillNumber()">📋 Copy Till</button>
           <button class="button button-secondary" onclick="copyAmount()">📋 Copy Amount</button>
           <button class="button button-secondary" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
@@ -582,36 +585,21 @@
       return copyText(String(amount), `✅ Amount copied: KSh ${Number(amount).toLocaleString()}`);
     }
 
-    function isAndroid() { return /Android/i.test(navigator.userAgent); }
-
-    // Best-effort: open M-Pesa app (Android). If it fails, we immediately dial USSD.
-    function openMpesaOrUSSD() {
-      // Try open app
-      if (isAndroid()) {
-        const pkg = "com.safaricom.mpesa.lifestyle";
-        const intentUrl = `intent://#Intent;package=${pkg};end`;
-        window.location.href = intentUrl;
-      }
-
-      // Fallback to USSD dialer almost immediately
-      setTimeout(() => {
-        window.location.href = CONFIG.USSD_TEL;
-      }, 450);
-    }
-
-    function initiatePayment() {
+    // ✅ Most reliable: always open USSD dialer (*334#)
+    // Also copies Till + Amount to reduce friction.
+    function payNow() {
       const amount = state.selectedAmount || Number(localStorage.getItem('elwak_amount'));
       if (!amount) { showToast('⚠️ Please select an amount first'); return; }
 
       if (!state.reference) state.reference = generateReference();
       saveLocal();
 
-      // Reduce friction: copy both
+      // Copy both (best effort)
       copyTillNumber();
       copyAmount();
 
-      // Go straight to app/USSD (no instructions)
-      openMpesaOrUSSD();
+      // Open dialer with *334#
+      window.location.href = CONFIG.USSD_TEL;
     }
 
     function shareOnWhatsApp() {
@@ -622,7 +610,9 @@ Feed a fasting family for the sake of Allah.
 📍 Buy Goods Till: ${CONFIG.TILL_NUMBER}
 🎯 Target: ${formatCurrency(CONFIG.TARGET_AMOUNT)}
 
-Contribute here: ${window.location.href}`;
+Contribute here: ${window.location.href}
+
+“Whoever feeds a fasting person will have a reward equal to theirs, without reducing their reward in any way.”`;
       window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -631,6 +621,7 @@ Contribute here: ${window.location.href}`;
       const reference = state.reference || localStorage.getItem('elwak_reference') || generateReference();
 
       if (!amount) return showToast('⚠️ Please select an amount first');
+      if (state.hasParticipated) return showToast('✅ Already recorded on this device');
 
       showToast('📝 Recording your participation...');
 
@@ -656,9 +647,9 @@ Contribute here: ${window.location.href}`;
         saveLocal();
 
         el.thanksText.textContent =
-          `Thank you for your generosity.\nMay Allah accept your charity, bless your wealth, and multiply your reward.\nجزاك الله خيرًا`;
-        el.thanksModal.style.display = 'block';
+          `Thank you for your generosity.\nMay Allah accept your charity, bless you abundantly, and multiply your reward in Ramadan.\nجزاك الله خيرًا`;
 
+        el.thanksModal.style.display = 'block';
         showToast('✅ Recorded successfully!');
         setTimeout(refreshStatistics, 600);
 
@@ -714,6 +705,7 @@ Contribute here: ${window.location.href}`;
         if (e.target === el.thanksModal) closeThanksModal();
       });
     }
+
     initialize();
   </script>
 </body>
