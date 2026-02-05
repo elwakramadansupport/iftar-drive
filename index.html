@@ -6,540 +6,495 @@
   <title>Ramadan Iftar Drive | Elwak</title>
 
   <style>
-    :root {
-      --bg-primary: #0f4c75;
-      --bg-secondary: #0b3c5d;
-      --bg-tertiary: #06283d;
-      --accent-gold: #ffd700;
-      --accent-green: #1eb53a;
-      --border-light: rgba(255, 255, 255, 0.16);
-      --overlay-light: rgba(255, 255, 255, 0.14);
-      --overlay-dark: rgba(0, 0, 0, 0.18);
+    :root{
+      --ink:#0b1220;
+      --muted:#5b6b82;
+      --card:#ffffff;
+      --line:rgba(16,24,40,.10);
+      --shadow:0 18px 50px rgba(2,8,23,.10);
+      --blue:#165dff;
+      --blue2:#0b3c5d;
+      --gold:#d9a200;
+      --green:#1eb53a;
+      --greenDark:#149a2c;
+      --bg1:#f6f9ff;
+      --bg2:#eef4ff;
+      --bg3:#ffffff;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *{box-sizing:border-box;margin:0;padding:0}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      color:var(--ink);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
       background:
-        radial-gradient(900px 420px at 18% 10%, rgba(255, 215, 0, 0.18), transparent 60%),
-        radial-gradient(900px 420px at 82% 22%, rgba(30, 181, 58, 0.16), transparent 55%),
-        radial-gradient(circle at top, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary));
-      background-attachment: fixed;
+        radial-gradient(900px 420px at 12% 8%, rgba(22,93,255,.10), transparent 60%),
+        radial-gradient(900px 420px at 88% 18%, rgba(30,181,58,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2) 48%, var(--bg3));
     }
 
-    .container {
-      width: min(980px, 100%);
-      background: linear-gradient(to bottom right, var(--overlay-light), rgba(255, 255, 255, 0.06));
-      border: 1px solid var(--border-light);
-      border-radius: 24px;
-      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(16px);
-      overflow: hidden;
+    .container{
+      width:min(980px,100%);
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    .header {
-      padding: 24px 20px 16px;
-      text-align: center;
+    /* Top accent strip */
+    .accent{
+      height:10px;
+      background: linear-gradient(90deg, var(--blue), #2b8cff, var(--green), #ffd05a);
     }
 
-    .badgeRow {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 14px;
+    .header{
+      padding:22px 20px 12px;
+      text-align:center;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 215, 0, 0.14);
-      border: 1px solid rgba(255, 215, 0, 0.35);
-      color: var(--accent-gold);
-      font-weight: 800;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      font-size: 0.78rem;
+    .chipRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+      margin-bottom:12px;
     }
 
-    /* LIVE DONOR COUNTER (A) */
-    .liveCounter {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.10);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      font-weight: 900;
-      letter-spacing: 0.3px;
-      font-size: 0.92rem;
-    }
-    .liveCounter b {
-      color: var(--accent-gold);
-      font-size: 1.05rem;
-      letter-spacing: 0.5px;
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(22,93,255,.08);
+      border:1px solid rgba(22,93,255,.16);
+      color:var(--blue2);
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      font-size:.78rem;
     }
 
-    h1 {
-      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 10px;
-      background: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.85));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .liveCounter{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(30,181,58,.08);
+      border:1px solid rgba(30,181,58,.18);
+      color:var(--greenDark);
+      font-weight:900;
+      font-size:.9rem;
+    }
+    .liveCounter b{
+      color:var(--greenDark);
+      font-size:1.05rem;
+      letter-spacing:.4px;
     }
 
-    .subtitle {
-      max-width: 760px;
-      margin: 0 auto 18px;
-      opacity: 0.94;
-      line-height: 1.65;
-      font-size: 1.05rem;
+    h1{
+      font-size:clamp(1.55rem,3.6vw,2.6rem);
+      font-weight:1000;
+      line-height:1.15;
+      margin:6px 0 8px;
+      color:var(--ink);
     }
 
-    .quote {
-      max-width: 820px;
-      margin: 0 auto 16px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(255, 215, 0, 0.09);
-      border: 1px solid rgba(255, 215, 0, 0.18);
-      font-weight: 700;
-      opacity: 0.95;
-      line-height: 1.55;
+    .subtitle{
+      max-width:780px;
+      margin:0 auto 12px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:1.02rem;
+      font-weight:650;
     }
 
-    .statistics {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 12px;
+    .quote{
+      max-width:860px;
+      margin:0 auto 10px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:rgba(217,162,0,.08);
+      border:1px solid rgba(217,162,0,.18);
+      color:#5a4300;
+      font-weight:800;
+      line-height:1.55;
+      font-size:.98rem;
     }
 
-    .stat-card {
-      padding: 14px;
-      border-radius: 16px;
-      background: var(--overlay-dark);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      text-align: center;
-      transition: transform 0.2s ease;
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      padding:12px 20px 18px;
     }
 
-    .stat-card:hover { transform: translateY(-2px); }
-
-    .stat-label {
-      display: block;
-      font-size: 0.88rem;
-      opacity: 0.9;
-      margin-bottom: 6px;
-      font-weight: 700;
+    .stat{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(2,8,23,.06);
+      text-align:center;
     }
 
-    .stat-value {
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: var(--accent-gold);
+    .stat span{
+      display:block;
+      color:var(--muted);
+      font-weight:800;
+      font-size:.9rem;
+      margin-bottom:6px;
     }
 
-    .progress-section {
-      margin-top: 12px;
-      padding: 12px;
-      border-radius: 16px;
-      background: var(--overlay-dark);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .stat b{
+      font-size:1.18rem;
+      font-weight:1000;
+      color:var(--blue2);
     }
 
-    .progress-bar {
-      height: 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
-      overflow: hidden;
-      position: relative;
+    .progressWrap{
+      margin:0 20px 18px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(2,8,23,.06);
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
-      border-radius: 999px;
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 20px rgba(30, 181, 58, 0.4);
+    .bar{
+      height:14px;
+      border-radius:999px;
+      background:rgba(15,23,42,.08);
+      overflow:hidden;
     }
 
-    .progress-text {
-      margin-top: 10px;
-      font-size: 0.92rem;
-      text-align: center;
-      font-weight: 700;
-      opacity: 0.95;
+    .fill{
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--green), #2b8cff, #ffd05a);
+      transition:width .6s cubic-bezier(.4,0,.2,1);
     }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
-      padding: 0 20px 20px;
+    .barText{
+      margin-top:10px;
+      color:var(--muted);
+      font-weight:900;
+      font-size:.92rem;
+      text-align:center;
     }
 
-    .panel {
-      background: var(--overlay-dark);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 18px;
-      padding: 18px;
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:16px;
+      padding:0 20px 20px;
     }
 
-    .panel-title {
-      font-size: 0.95rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: var(--accent-gold);
-      opacity: 0.95;
-      line-height: 1.55;
+    .panel{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:16px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(2,8,23,.06);
     }
 
-    .amount-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 14px;
+    .panelTitle{
+      color:var(--blue2);
+      font-weight:1000;
+      font-size:.95rem;
+      line-height:1.5;
+      margin-bottom:10px;
     }
 
-    .amount-button {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 14px;
-      padding: 14px 10px;
-      cursor: pointer;
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 0.95rem;
-      background: rgba(255, 255, 255, 0.12);
-      transition: all 0.2s ease;
-      text-align: center;
-      user-select: none;
+    .amountGrid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:12px;
     }
 
-    .amount-button:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.22);
-      transform: translateY(-1px);
+    .amtBtn{
+      border:1px solid rgba(16,24,40,.12);
+      border-radius:14px;
+      padding:12px 10px;
+      cursor:pointer;
+      background:rgba(22,93,255,.06);
+      color:var(--blue2);
+      font-weight:1000;
+      transition:all .15s ease;
+      text-align:center;
+      user-select:none;
+    }
+    .amtBtn:hover{ transform:translateY(-1px); background:rgba(22,93,255,.10); }
+    .amtBtn.selected{
+      background:linear-gradient(135deg, rgba(30,181,58,.18), rgba(22,93,255,.10));
+      border-color:rgba(30,181,58,.35);
+      box-shadow:0 12px 24px rgba(30,181,58,.12);
     }
 
-    .amount-button:active { transform: scale(0.98); }
-
-    .amount-button.selected {
-      background: linear-gradient(135deg, var(--accent-green), rgba(30, 181, 58, 0.85));
-      border-color: rgba(30, 181, 58, 0.6);
-      box-shadow: 0 8px 20px rgba(30, 181, 58, 0.3);
+    .inputs{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
     }
 
-    .custom-input-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 14px;
-      gap: 10px;
-      flex-wrap: wrap;
+    input{
+      flex:1 1 240px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(16,24,40,.12);
+      outline:none;
+      font-size:1rem;
+      font-weight:650;
+      background:#fff;
+      color:var(--ink);
+    }
+    input:focus{
+      border-color:rgba(22,93,255,.40);
+      box-shadow:0 0 0 4px rgba(22,93,255,.12);
+    }
+    input::placeholder{ color:#8a98ad; font-weight:650; }
+
+    .infoGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:12px;
     }
 
-    .custom-input {
-      width: 100%;
-      max-width: 280px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      outline: none;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
+    .info{
+      border:1px solid rgba(16,24,40,.10);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(2,8,23,.02);
+      text-align:center;
     }
 
-    .custom-input:focus {
-      border-color: var(--accent-gold);
-      background: rgba(255, 255, 255, 0.12);
+    .info small{
+      display:block;
+      color:var(--muted);
+      font-weight:900;
+      margin-bottom:4px;
     }
 
-    .custom-input::placeholder { color: rgba(255, 255, 255, 0.7); }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 12px;
+    .info strong{
+      display:block;
+      font-weight:1000;
+      color:var(--ink);
+      word-break:break-word;
     }
 
-    .info-item {
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      text-align: center;
+    .tillBox{
+      margin-top:10px;
+      border-radius:16px;
+      padding:16px;
+      background:linear-gradient(135deg, rgba(30,181,58,.18), rgba(30,181,58,.10));
+      border:1px solid rgba(30,181,58,.30);
+      text-align:center;
     }
 
-    .info-label {
-      display: block;
-      font-size: 0.85rem;
-      opacity: 0.9;
-      margin-bottom: 4px;
-      font-weight: 700;
+    .tillLabel{
+      font-weight:1000;
+      letter-spacing:1.2px;
+      text-transform:uppercase;
+      font-size:.86rem;
+      color:var(--greenDark);
+      margin-bottom:6px;
     }
 
-    .info-value {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #ffffff;
-      word-break: break-word;
+    .tillNum{
+      font-size:2.2rem;
+      font-weight:1100;
+      letter-spacing:4px;
+      color:var(--greenDark);
     }
 
-    .till-display {
-      margin-top: 12px;
-      border-radius: 16px;
-      padding: 18px;
-      background: linear-gradient(135deg, var(--accent-green), rgba(30, 181, 58, 0.88));
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      box-shadow: 0 12px 28px rgba(30, 181, 58, 0.3);
-      text-align: center;
+    .how{
+      margin-top:12px;
+      border-radius:14px;
+      padding:12px;
+      background:rgba(22,93,255,.06);
+      border:1px solid rgba(22,93,255,.14);
+      color:var(--blue2);
+      font-weight:800;
+      line-height:1.6;
+      font-size:.95rem;
     }
 
-    .till-label {
-      font-weight: 900;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      font-size: 0.88rem;
-      opacity: 0.95;
-      margin-bottom: 8px;
+    .steps{
+      margin-top:10px;
+      display:grid;
+      gap:8px;
+    }
+    .step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 12px;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid rgba(16,24,40,.08);
+      font-weight:850;
+      color:var(--ink);
+    }
+    .n{
+      width:26px;height:26px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(22,93,255,.10);
+      border:1px solid rgba(22,93,255,.18);
+      color:var(--blue2);
+      font-weight:1100;
+      flex:0 0 auto;
+      margin-top:1px;
     }
 
-    .till-number {
-      font-size: 2.35rem;
-      font-weight: 900;
-      letter-spacing: 4px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+      justify-content:center;
     }
 
-    .instructions {
-      margin-top: 12px;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      opacity: 0.95;
-      padding: 12px;
-      border-radius: 12px;
-      background: rgba(255, 215, 0, 0.08);
-      border: 1px solid rgba(255, 215, 0, 0.2);
+    button{
+      border:none;
+      border-radius:14px;
+      padding:12px 16px;
+      font-weight:1000;
+      cursor:pointer;
+      font-size:.92rem;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+      white-space:nowrap;
+    }
+    button:active{ transform:scale(.98); }
+
+    .primary{
+      background:var(--green);
+      color:#fff;
+      box-shadow:0 10px 22px rgba(30,181,58,.18);
+    }
+    .primary:hover{ background:#22c943; }
+
+    .secondary{
+      background:rgba(2,8,23,.04);
+      color:var(--ink);
+      border:1px solid rgba(16,24,40,.10);
+    }
+    .secondary:hover{ background:rgba(2,8,23,.06); }
+
+    .gold{
+      background:linear-gradient(135deg, #ffd05a, #ffdf88);
+      color:#3b2a00;
+      box-shadow:0 10px 22px rgba(255,208,90,.20);
+    }
+    .gold:hover{ filter:brightness(.98); }
+
+    .danger{
+      background:#fff;
+      color:#9b1c1c;
+      border:1px solid rgba(155,28,28,.20);
+    }
+    .danger:hover{ background:rgba(155,28,28,.06); }
+
+    .footer{
+      text-align:center;
+      padding:14px 20px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      font-weight:850;
+      letter-spacing:.2px;
+      background:rgba(2,8,23,.01);
     }
 
-    .steps {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
+    /* Toast */
+    .toast{
+      position:fixed;
+      bottom:26px;
+      left:50%;
+      transform:translateX(-50%) translateY(90px);
+      padding:12px 16px;
+      border-radius:12px;
+      background:rgba(30,181,58,.95);
+      color:#fff;
+      font-weight:1000;
+      box-shadow:0 18px 50px rgba(2,8,23,.18);
+      opacity:0;
+      transition:all .25s cubic-bezier(.4,0,.2,1);
+      max-width:min(560px,92vw);
+      text-align:center;
+      z-index:9999;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
     }
 
-    .step {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      font-weight: 700;
-      opacity: 0.95;
-    }
-
-    .stepNum {
-      width: 26px; height: 26px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 215, 0, 0.16);
-      border: 1px solid rgba(255, 215, 0, 0.28);
-      color: var(--accent-gold);
-      font-weight: 900;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-
-    .action-buttons {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-      justify-content: center;
-    }
-
-    .button {
-      border: none;
-      border-radius: 14px;
-      padding: 12px 18px;
-      font-weight: 900;
-      font-size: 0.92rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      white-space: nowrap;
-    }
-
-    .button:active { transform: scale(0.97); }
-
-    .button-primary {
-      background: var(--accent-gold);
-      color: var(--bg-tertiary);
-      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    }
-
-    .button-primary:hover {
-      background: #ffdf33;
-      box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
-    }
-
-    .button-secondary {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-    }
-
-    .button-secondary:hover { background: rgba(255, 255, 255, 0.18); }
-
-    .button-success {
-      background: linear-gradient(135deg, var(--accent-green), rgba(30, 181, 58, 0.88));
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(30, 181, 58, 0.3);
-    }
-
-    .button-success:hover {
-      background: linear-gradient(135deg, #22c943, var(--accent-green));
-      box-shadow: 0 6px 16px rgba(30, 181, 58, 0.4);
-    }
-
-    .button-danger {
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .button-danger:hover {
-      background: rgba(255, 100, 100, 0.2);
-      border-color: rgba(255, 100, 100, 0.3);
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      padding: 14px 24px;
-      border-radius: 12px;
-      background: rgba(30, 181, 58, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      font-weight: 900;
-      font-size: 0.95rem;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 10000;
-      backdrop-filter: blur(10px);
-      text-align: center;
-      max-width: min(560px, 92vw);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      z-index: 9999;
+    /* Modal */
+    .overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(2,8,23,.55);
+      padding:18px;
+      z-index:9998;
       backdrop-filter: blur(4px);
-      animation: fadeIn 0.3s ease;
+    }
+    .modal{
+      max-width:560px;
+      margin:12vh auto 0;
+      background:#fff;
+      border:1px solid rgba(16,24,40,.12);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 28px 70px rgba(2,8,23,.25);
+    }
+    .mTitle{
+      font-weight:1100;
+      color:var(--blue2);
+      font-size:1.2rem;
+      margin-bottom:10px;
+    }
+    .mText{
+      color:var(--ink);
+      font-weight:750;
+      line-height:1.7;
+      white-space:pre-line;
+      margin-bottom:14px;
+    }
+    .mActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-    .modal {
-      max-width: 560px;
-      margin: 10vh auto;
-      background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 24px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
-      animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .modal-title {
-      font-weight: 900;
-      font-size: 1.3rem;
-      color: var(--accent-gold);
-      margin-bottom: 12px;
-    }
-
-    .modal-text {
-      line-height: 1.7;
-      opacity: 0.98;
-      margin-bottom: 18px;
-      font-size: 1rem;
-      font-weight: 650;
-    }
-
-    .modal-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 16px 20px;
-      opacity: 0.86;
-      font-size: 0.92rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    @media (max-width: 860px) {
-      .content-grid { grid-template-columns: 1fr; }
-      .amount-grid { grid-template-columns: repeat(2, 1fr); }
-      .statistics { grid-template-columns: 1fr; }
-      .till-number { font-size: 2rem; }
-      .action-buttons { flex-direction: column; }
-      .button { width: 100%; }
+    @media (max-width:860px){
+      .grid{ grid-template-columns:1fr; }
+      .amountGrid{ grid-template-columns:repeat(2,1fr); }
+      .stats{ grid-template-columns:1fr; }
+      button{ width:100%; }
+      .actions{ flex-direction:column; }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
+    <div class="accent"></div>
+
     <div class="header">
-      <div class="badgeRow">
-        <div class="badge">🌙 RAMADAN IFTAR DRIVE • ELWAK</div>
+      <div class="chipRow">
+        <div class="chip">🌙 Ramadan Iftar Drive • Elwak</div>
         <!-- LIVE DONOR COUNTER (A) -->
         <div class="liveCounter">👥 <b id="donorCount">0</b> people have joined</div>
       </div>
@@ -547,105 +502,90 @@
       <h1>Feed a Fasting Family This Ramadan</h1>
 
       <p class="subtitle">
-        We are preparing food packages for vulnerable families in Elwak <b>before Ramadan begins (19th)</b>.
-        Your support helps families start the month with dignity — with relief today, and reward in the Hereafter.
+        Ramadan begins on <b>19th</b>. We are raising funds to prepare food packages for vulnerable families in Elwak before the month starts.
+        Every contribution helps relieve hardship and earns reward.
       </p>
 
       <div class="quote">
         “Whoever feeds a fasting person will have a reward equal to theirs, without reducing their reward in any way.”
       </div>
+    </div>
 
-      <div class="statistics">
-        <div class="stat-card">
-          <span class="stat-label">Total Raised</span>
-          <span class="stat-value" id="totalRaised">KSh 0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Participants</span>
-          <span class="stat-value" id="participants">0</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Remaining</span>
-          <span class="stat-value" id="remaining">KSh 500,000</span>
-        </div>
+    <div class="stats">
+      <div class="stat">
+        <span>Total Raised</span>
+        <b id="totalRaised">KSh 0</b>
       </div>
-
-      <div class="progress-section">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill"></div>
-        </div>
-        <div class="progress-text" id="progressText">0% of target reached</div>
+      <div class="stat">
+        <span>Participants</span>
+        <b id="participants">0</b>
+      </div>
+      <div class="stat">
+        <span>Remaining</span>
+        <b id="remaining">KSh 500,000</b>
       </div>
     </div>
 
-    <div class="content-grid">
+    <div class="progressWrap">
+      <div class="bar"><div class="fill" id="progressFill"></div></div>
+      <div class="barText" id="progressText">0% of target reached</div>
+    </div>
+
+    <div class="grid">
       <div class="panel">
-        <div class="panel-title">
-          Target: <b>KSh 500,000</b> • Cost per family pack: <b>KSh 5,000</b> • Mission: Complete support <b>before Ramadan begins</b>.
+        <div class="panelTitle">
+          Target: <b>KSh 500,000</b> • Cost per family pack: <b>KSh 5,000</b> • Goal: complete support before Ramadan begins.
         </div>
 
-        <div class="amount-grid" id="amountGrid">
-          <button class="amount-button" data-amount="100">KSh 100</button>
-          <button class="amount-button" data-amount="200">KSh 200</button>
-          <button class="amount-button" data-amount="300">KSh 300</button>
-          <button class="amount-button" data-amount="500">KSh 500</button>
-          <button class="amount-button" data-amount="1000">KSh 1,000</button>
-          <button class="amount-button" data-amount="1500">KSh 1,500</button>
-          <button class="amount-button" data-amount="2000">KSh 2,000</button>
-          <button class="amount-button" data-amount="custom">Custom</button>
+        <div class="amountGrid" id="amountGrid">
+          <div class="amtBtn" data-amount="100">KSh 100</div>
+          <div class="amtBtn" data-amount="200">KSh 200</div>
+          <div class="amtBtn" data-amount="300">KSh 300</div>
+          <div class="amtBtn" data-amount="500">KSh 500</div>
+          <div class="amtBtn" data-amount="1000">KSh 1,000</div>
+          <div class="amtBtn" data-amount="1500">KSh 1,500</div>
+          <div class="amtBtn" data-amount="2000">KSh 2,000</div>
+          <div class="amtBtn" data-amount="custom">Custom</div>
         </div>
 
-        <div class="custom-input-wrapper">
-          <input
-            id="customAmount"
-            class="custom-input"
-            type="number"
-            min="1"
-            inputmode="numeric"
-            placeholder="Enter custom amount (e.g., 750)"
-          />
-          <input
-            id="nameInput"
-            class="custom-input"
-            type="text"
-            maxlength="40"
-            placeholder="Your name (optional)"
-          />
+        <div class="inputs">
+          <input id="customAmount" type="number" min="1" inputmode="numeric" placeholder="Enter custom amount (e.g., 750)" />
+          <input id="nameInput" type="text" maxlength="40" placeholder="Your name (optional)" />
+        </div>
+
+        <div class="how">
+          <b>Simple steps:</b>
+          <div class="steps">
+            <div class="step"><div class="n">1</div><div>Select an amount (or enter any amount).</div></div>
+            <div class="step"><div class="n">2</div><div>Pay via M-Pesa: <b>Lipa na M-Pesa → Buy Goods</b> → Till <b>4341738</b> → Amount → PIN.</div></div>
+            <div class="step"><div class="n">3</div><div>Return here and tap <b>I Have Contributed</b> to record your participation.</div></div>
+          </div>
         </div>
       </div>
 
       <div class="panel">
-        <div class="info-grid">
-          <div class="info-item">
-            <span class="info-label">Selected Amount</span>
-            <span class="info-value" id="selectedAmount">None</span>
+        <div class="infoGrid">
+          <div class="info">
+            <small>Selected Amount</small>
+            <strong id="selectedAmount">None</strong>
           </div>
-          <div class="info-item">
-            <span class="info-label">Reference</span>
-            <span class="info-value" id="reference">—</span>
-          </div>
-        </div>
-
-        <div class="till-display">
-          <div class="till-label">Buy Goods Till Number</div>
-          <div class="till-number" id="tillText">4341738</div>
-        </div>
-
-        <div class="instructions">
-          <b>How to participate (simple):</b>
-          <div class="steps">
-            <div class="step"><span class="stepNum">1</span> Select an amount (or type any amount).</div>
-            <div class="step"><span class="stepNum">2</span> Pay via M-Pesa: <b>Lipa na M-Pesa → Buy Goods</b> → Till <b>4341738</b> → Amount → PIN.</div>
-            <div class="step"><span class="stepNum">3</span> Come back and tap <b>I Have Contributed</b> so your support is recorded.</div>
+          <div class="info">
+            <small>Reference</small>
+            <strong id="reference">—</strong>
           </div>
         </div>
 
-        <div class="action-buttons">
-          <button class="button button-primary" onclick="payNow()">Pay Now</button>
-          <button class="button button-secondary" onclick="copyTillNumber()">Copy Till</button>
-          <button class="button button-secondary" onclick="copySelectedAmount()">Copy Amount</button>
-          <button class="button button-success" onclick="recordContribution()">I Have Contributed</button>
-          <button class="button button-danger" onclick="resetSelection()">Reset</button>
+        <div class="tillBox">
+          <div class="tillLabel">Buy Goods Till Number</div>
+          <div class="tillNum" id="tillText">4341738</div>
+        </div>
+
+        <div class="actions">
+          <button class="gold" onclick="payNow()">Pay Now</button>
+          <button class="secondary" onclick="copyTillNumber()">Copy Till</button>
+          <button class="secondary" onclick="copySelectedAmount()">Copy Amount</button>
+          <button class="primary" onclick="recordContribution()">I Have Contributed</button>
+          <button class="danger" onclick="resetSelection()">Reset</button>
         </div>
       </div>
     </div>
@@ -655,19 +595,19 @@
 
   <div id="toast" class="toast"></div>
 
-  <div id="thanksModal" class="modal-overlay">
+  <div id="thanksModal" class="overlay">
     <div class="modal">
-      <div class="modal-title">جزاك الله خيرًا — May Allah Reward You</div>
-      <div id="thanksText" class="modal-text"></div>
-      <div class="modal-actions">
-        <button class="button button-secondary" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-        <button class="button button-primary" onclick="closeModal()">Close</button>
+      <div class="mTitle">جزاك الله خيرًا — May Allah Reward You</div>
+      <div id="thanksText" class="mText"></div>
+      <div class="mActions">
+        <button class="secondary" onclick="shareOnWhatsApp()">Share</button>
+        <button class="gold" onclick="closeModal()">Close</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ========== CONFIG ==========
+    // ========= CONFIG =========
     const CONFIG = {
       GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxgmGgwEFODJr3Q6K9vwz8D706EBUqhZDJqMAyoDVNdl5sspJERk40V-lDgznI8R1rJ/exec",
       TARGET_AMOUNT: 500000,
@@ -675,168 +615,163 @@
       REF_PREFIX: "ELW"
     };
 
-    // ========== STATE ==========
+    // ========= STATE =========
     let state = {
       selectedAmount: null,
       reference: null,
-      contributedRecorded: false
+      recorded: false
     };
 
-    // ========== DOM ==========
+    // ========= DOM =========
     const el = {
       totalRaised: document.getElementById('totalRaised'),
       participants: document.getElementById('participants'),
       remaining: document.getElementById('remaining'),
       progressFill: document.getElementById('progressFill'),
       progressText: document.getElementById('progressText'),
+      donorCount: document.getElementById('donorCount'),
       selectedAmount: document.getElementById('selectedAmount'),
       reference: document.getElementById('reference'),
-      donorCount: document.getElementById('donorCount'),
       customAmount: document.getElementById('customAmount'),
       nameInput: document.getElementById('nameInput'),
       toast: document.getElementById('toast'),
       thanksModal: document.getElementById('thanksModal'),
       thanksText: document.getElementById('thanksText'),
-      amountButtons: document.querySelectorAll('.amount-button')
+      amtBtns: document.querySelectorAll('.amtBtn')
     };
 
-    // ========== HELPERS ==========
-    function generateReference() {
+    // ========= HELPERS =========
+    function generateReference(){
       const d = new Date();
       const yy = String(d.getFullYear()).slice(2);
-      const mm = String(d.getMonth() + 1).padStart(2, '0');
-      const dd = String(d.getDate()).padStart(2, '0');
-      const rnd = Math.random().toString(36).slice(2, 6).toUpperCase();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      const rnd = Math.random().toString(36).slice(2,6).toUpperCase();
       return `${CONFIG.REF_PREFIX}-${yy}${mm}${dd}-${rnd}`;
     }
 
-    function formatCurrency(amount) {
-      return `KSh ${Number(amount).toLocaleString()}`;
-    }
+    function formatCurrency(x){ return `KSh ${Number(x).toLocaleString()}`; }
 
-    function showToast(message, duration = 2600) {
-      el.toast.textContent = message;
+    function showToast(msg, t=2600){
+      el.toast.textContent = msg;
       el.toast.classList.add('show');
-      setTimeout(() => el.toast.classList.remove('show'), duration);
+      setTimeout(()=>el.toast.classList.remove('show'), t);
     }
 
-    function saveLocal() {
+    function saveLocal(){
       localStorage.setItem('el_amt', state.selectedAmount ? String(state.selectedAmount) : '');
       localStorage.setItem('el_ref', state.reference || '');
       localStorage.setItem('el_name', el.nameInput.value || '');
-      localStorage.setItem('el_recorded', String(state.contributedRecorded));
+      localStorage.setItem('el_recorded', String(state.recorded));
     }
 
-    function loadLocal() {
+    function loadLocal(){
       const a = localStorage.getItem('el_amt');
       const r = localStorage.getItem('el_ref');
       const n = localStorage.getItem('el_name');
       const rec = localStorage.getItem('el_recorded') === 'true';
 
-      if (a) {
+      if(a){
         state.selectedAmount = Number(a);
         el.selectedAmount.textContent = formatCurrency(state.selectedAmount);
       }
-      if (r) {
+      if(r){
         state.reference = r;
         el.reference.textContent = r;
       }
-      if (n) el.nameInput.value = n;
-      state.contributedRecorded = rec;
+      if(n) el.nameInput.value = n;
+      state.recorded = rec;
     }
 
-    function setAmount(amount) {
+    function setAmount(amount){
       state.selectedAmount = amount;
       state.reference = generateReference();
+      state.recorded = false;
       el.selectedAmount.textContent = formatCurrency(amount);
       el.reference.textContent = state.reference;
-      state.contributedRecorded = false;
       saveLocal();
     }
 
-    // ========== AMOUNT SELECTION ==========
-    el.amountButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        el.amountButtons.forEach(b => b.classList.remove('selected'));
+    // ========= AMOUNT UI =========
+    el.amtBtns.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        el.amtBtns.forEach(b=>b.classList.remove('selected'));
         btn.classList.add('selected');
 
         const v = btn.dataset.amount;
-        if (v === 'custom') {
+        if(v === 'custom'){
           state.selectedAmount = null;
           state.reference = generateReference();
+          state.recorded = false;
           el.selectedAmount.textContent = 'Custom';
           el.reference.textContent = state.reference;
-          state.contributedRecorded = false;
           saveLocal();
           el.customAmount.focus();
-        } else {
-          el.customAmount.value = '';
-          setAmount(Number(v));
+          return;
         }
+
+        el.customAmount.value = '';
+        setAmount(Number(v));
       });
     });
 
-    el.customAmount.addEventListener('input', (e) => {
+    el.customAmount.addEventListener('input', (e)=>{
       const v = Number(e.target.value);
-      if (v > 0) {
-        el.amountButtons.forEach(b => b.classList.remove('selected'));
+      if(v > 0){
+        el.amtBtns.forEach(b=>b.classList.remove('selected'));
         setAmount(v);
       }
     });
 
     el.nameInput.addEventListener('input', saveLocal);
 
-    // ========== PAYMENT BUTTON (simple + no playstore redirects) ==========
-    function payNow() {
+    // ========= PAY NOW (no Play Store redirects) =========
+    function payNow(){
       const amount = state.selectedAmount || Number(localStorage.getItem('el_amt'));
-      if (!amount) return showToast('Please select an amount first.');
+      if(!amount){
+        showToast('Please select an amount first.');
+        return;
+      }
 
-      // Copy till & amount (best “simple” UX that works everywhere)
-      Promise.allSettled([
-        navigator.clipboard.writeText(CONFIG.TILL_NUMBER),
-        navigator.clipboard.writeText(`${CONFIG.TILL_NUMBER}`)
-      ]).finally(() => {
-        showToast('Till copied. Open M-Pesa → Buy Goods → paste Till & pay.');
-      });
-
-      // Open the dialer to *334# as an OPTIONAL fallback (some phones will show USSD prompt)
-      // This won’t work on all devices/browsers — but it won’t send to Play Store.
-      const ussd = encodeURIComponent("*334#");
-      window.location.href = `tel:${ussd}`;
-    }
-
-    function copyTillNumber() {
+      // Copy Till + Amount (works everywhere)
       navigator.clipboard.writeText(CONFIG.TILL_NUMBER)
-        .then(() => showToast(`Till ${CONFIG.TILL_NUMBER} copied.`))
-        .catch(() => showToast(`Copy failed. Till: ${CONFIG.TILL_NUMBER}`));
+        .then(()=>showToast(`Till ${CONFIG.TILL_NUMBER} copied. Open M-Pesa → Buy Goods and pay.`))
+        .catch(()=>showToast(`Open M-Pesa → Buy Goods → Till ${CONFIG.TILL_NUMBER} → Amount ${amount}.`));
+
+      // Optional: open dialer to USSD (some devices will show prompt)
+      // This avoids Play Store redirects and does not break the page.
+      const ussd = encodeURIComponent("*334#");
+      setTimeout(()=>{ window.location.href = `tel:${ussd}`; }, 350);
     }
 
-    function copySelectedAmount() {
+    function copyTillNumber(){
+      navigator.clipboard.writeText(CONFIG.TILL_NUMBER)
+        .then(()=>showToast(`Till ${CONFIG.TILL_NUMBER} copied.`))
+        .catch(()=>showToast(`Copy failed. Till: ${CONFIG.TILL_NUMBER}`));
+    }
+
+    function copySelectedAmount(){
       const amount = state.selectedAmount || Number(localStorage.getItem('el_amt'));
-      if (!amount) return showToast('Select an amount first.');
+      if(!amount){ showToast('Select an amount first.'); return; }
       navigator.clipboard.writeText(String(amount))
-        .then(() => showToast(`Amount ${amount} copied.`))
-        .catch(() => showToast(`Copy failed. Amount: ${amount}`));
+        .then(()=>showToast(`Amount ${amount} copied.`))
+        .catch(()=>showToast(`Copy failed. Amount: ${amount}`));
     }
 
-    // ========== RECORD CONTRIBUTION (Google Apps Script) ==========
-    async function recordContribution() {
+    // ========= RECORD CONTRIBUTION =========
+    async function recordContribution(){
       const amount = state.selectedAmount || Number(localStorage.getItem('el_amt'));
       const reference = state.reference || localStorage.getItem('el_ref') || generateReference();
       const name = (el.nameInput.value || localStorage.getItem('el_name') || '').trim();
 
-      if (!amount) return showToast('Please select an amount first.');
+      if(!amount){ showToast('Please select an amount first.'); return; }
+      if(state.recorded){ showToast('Already recorded. Thank you!'); return; }
 
-      if (state.contributedRecorded) {
-        showToast('Already recorded. Thank you!');
-        return;
-      }
+      showToast('Recording your participation...');
 
-      showToast('Recording your support...');
-
-      try {
+      try{
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const timeoutId = setTimeout(()=>controller.abort(), 15000);
 
         const payload = {
           amount,
@@ -846,57 +781,47 @@
         };
 
         const res = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' }, // avoids CORS preflight
+          method:'POST',
+          headers:{'Content-Type':'text/plain'}, // avoids CORS preflight
           body: JSON.stringify(payload),
           signal: controller.signal
         });
 
         clearTimeout(timeoutId);
-
-        if (!res.ok) throw new Error(`Server error (${res.status})`);
+        if(!res.ok) throw new Error(`Server error (${res.status})`);
 
         const data = await res.json();
-        if (!data || !data.ok) throw new Error('Could not record contribution');
+        if(!data || !data.ok) throw new Error('Could not record');
 
-        state.contributedRecorded = true;
+        state.recorded = true;
         state.reference = reference;
         el.reference.textContent = reference;
         saveLocal();
 
-        // Thank you message (balanced religious + transparent)
         el.thanksText.textContent =
-          `Your support has been recorded.\n\n` +
-          `May Allah accept your generosity, multiply your reward, and place barakah in your sustenance.\n` +
-          `Because of you, a family will break their fast with dignity.\n\n` +
+          `Your participation has been recorded.\n\n` +
+          `May Allah accept your generosity, multiply your reward, and place barakah in your wealth.\n\n` +
           `Recorded amount: ${formatCurrency(amount)}\nReference: ${reference}`;
 
         el.thanksModal.style.display = 'block';
         showToast('Recorded. JazakAllahu khairan.');
 
-        // Refresh stats
         setTimeout(refreshStatistics, 600);
 
-      } catch (err) {
-        if (err.name === 'AbortError') {
-          showToast('Timed out. Please check your internet and try again.');
-        } else {
-          showToast('Could not record right now. Please try again.');
-        }
+      }catch(err){
+        if(err.name === 'AbortError') showToast('Timed out. Please check your internet and try again.');
+        else showToast('Could not record now. Please try again.');
         console.error(err);
       }
     }
 
-    function closeModal() {
-      el.thanksModal.style.display = 'none';
-    }
+    function closeModal(){ el.thanksModal.style.display = 'none'; }
 
-    // ========== SHARE ==========
-    function shareOnWhatsApp() {
+    function shareOnWhatsApp(){
       const msg =
 `🌙 RAMADAN IFTAR DRIVE • ELWAK
 
-Help us prepare food packages for vulnerable families before Ramadan begins (19th).
+Ramadan begins on 19th. Help us prepare food packages for vulnerable families.
 
 Till: ${CONFIG.TILL_NUMBER}
 Target: KSh 500,000
@@ -905,22 +830,20 @@ Join here:
 ${window.location.href}
 
 “Whoever feeds a fasting person will have a reward equal to theirs...”`;
-
       window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    // ========== RESET ==========
-    function resetSelection() {
-      if (!confirm('Reset your selection?')) return;
+    function resetSelection(){
+      if(!confirm('Reset your selection?')) return;
 
       state.selectedAmount = null;
       state.reference = null;
-      state.contributedRecorded = false;
+      state.recorded = false;
 
       el.customAmount.value = '';
       el.selectedAmount.textContent = 'None';
       el.reference.textContent = '—';
-      el.amountButtons.forEach(b => b.classList.remove('selected'));
+      el.amtBtns.forEach(b=>b.classList.remove('selected'));
 
       localStorage.removeItem('el_amt');
       localStorage.removeItem('el_ref');
@@ -929,19 +852,18 @@ ${window.location.href}
       showToast('Reset done.');
     }
 
-    // ========== LIVE STATS (includes donor counter A) ==========
-    async function refreshStatistics() {
-      try {
+    // ========= LIVE STATS (Donor counter A uses count) =========
+    async function refreshStatistics(){
+      try{
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000);
+        const timeoutId = setTimeout(()=>controller.abort(), 10000);
 
-        const res = await fetch(CONFIG.GOOGLE_SCRIPT_URL, { method: 'GET', signal: controller.signal });
+        const res = await fetch(CONFIG.GOOGLE_SCRIPT_URL, { method:'GET', signal: controller.signal });
         clearTimeout(timeoutId);
 
-        if (!res.ok) return;
-
+        if(!res.ok) return;
         const data = await res.json();
-        if (!data || !data.ok) return;
+        if(!data || !data.ok) return;
 
         const total = Number(data.total || 0);
         const count = Number(data.count || 0);
@@ -954,18 +876,15 @@ ${window.location.href}
         el.remaining.textContent = formatCurrency(remaining);
         el.progressFill.style.width = `${pct.toFixed(1)}%`;
         el.progressText.textContent = `${pct.toFixed(1)}% of target reached`;
-
-      } catch (e) {
-        // silent fail
+      }catch(e){
+        // silent
       }
     }
 
-    // ========== INIT ==========
-    function init() {
+    function init(){
       loadLocal();
 
-      // Ensure reference exists once amount exists
-      if ((state.selectedAmount || Number(localStorage.getItem('el_amt'))) && (!state.reference || state.reference === '—')) {
+      if((state.selectedAmount || Number(localStorage.getItem('el_amt'))) && (!state.reference || state.reference === '—')){
         state.reference = generateReference();
         el.reference.textContent = state.reference;
         saveLocal();
