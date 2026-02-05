@@ -17,11 +17,7 @@
       --overlay-dark: rgba(0, 0, 0, 0.18);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -31,7 +27,7 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: 
+      background:
         radial-gradient(900px 420px at 18% 10%, rgba(255, 215, 0, 0.18), transparent 60%),
         radial-gradient(900px 420px at 82% 22%, rgba(30, 181, 58, 0.16), transparent 55%),
         radial-gradient(circle at top, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary));
@@ -48,24 +44,15 @@
       overflow: hidden;
     }
 
-    /* Header Section */
-    .header {
-      padding: 24px 20px 16px;
-      text-align: center;
-    }
+    .header { padding: 24px 20px 16px; text-align: center; }
 
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 999px;
       background: rgba(255, 215, 0, 0.14);
       border: 1px solid rgba(255, 215, 0, 0.35);
       color: var(--accent-gold);
-      font-weight: 800;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
+      font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
       font-size: 0.78rem;
       margin-bottom: 16px;
     }
@@ -89,7 +76,6 @@
       font-size: 1.05rem;
     }
 
-    /* Statistics Section */
     .statistics {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -105,26 +91,11 @@
       text-align: center;
       transition: transform 0.2s ease;
     }
+    .stat-card:hover { transform: translateY(-2px); }
 
-    .stat-card:hover {
-      transform: translateY(-2px);
-    }
+    .stat-label { display: block; font-size: 0.88rem; opacity: 0.9; margin-bottom: 6px; font-weight: 600; }
+    .stat-value { font-size: 1.2rem; font-weight: 900; color: var(--accent-gold); }
 
-    .stat-label {
-      display: block;
-      font-size: 0.88rem;
-      opacity: 0.9;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 1.2rem;
-      font-weight: 900;
-      color: var(--accent-gold);
-    }
-
-    /* Progress Bar */
     .progress-section {
       margin-top: 12px;
       padding: 12px;
@@ -150,14 +121,8 @@
       box-shadow: 0 0 20px rgba(30, 181, 58, 0.4);
     }
 
-    .progress-text {
-      margin-top: 10px;
-      font-size: 0.92rem;
-      text-align: center;
-      font-weight: 600;
-    }
+    .progress-text { margin-top: 10px; font-size: 0.92rem; text-align: center; font-weight: 600; }
 
-    /* Main Content Grid */
     .content-grid {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
@@ -180,7 +145,6 @@
       opacity: 0.95;
     }
 
-    /* Amount Selection Grid */
     .amount-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -206,10 +170,7 @@
       border-color: rgba(255, 255, 255, 0.22);
       transform: translateY(-1px);
     }
-
-    .amount-button:active {
-      transform: scale(0.98);
-    }
+    .amount-button:active { transform: scale(0.98); }
 
     .amount-button.selected {
       background: linear-gradient(135deg, var(--accent-green), rgba(30, 181, 58, 0.85));
@@ -217,12 +178,7 @@
       box-shadow: 0 8px 20px rgba(30, 181, 58, 0.3);
     }
 
-    /* Custom Amount Input */
-    .custom-input-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 14px;
-    }
+    .custom-input-wrapper { display: flex; justify-content: center; margin-top: 14px; }
 
     .custom-input {
       width: 100%;
@@ -238,16 +194,9 @@
       transition: all 0.2s ease;
     }
 
-    .custom-input:focus {
-      border-color: var(--accent-gold);
-      background: rgba(255, 255, 255, 0.12);
-    }
+    .custom-input:focus { border-color: var(--accent-gold); background: rgba(255, 255, 255, 0.12); }
+    .custom-input::placeholder { color: rgba(255, 255, 255, 0.7); }
 
-    .custom-input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    /* Info Display */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -262,22 +211,9 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       text-align: center;
     }
+    .info-label { display: block; font-size: 0.85rem; opacity: 0.9; margin-bottom: 4px; font-weight: 600; }
+    .info-value { font-size: 1.05rem; font-weight: 900; color: #ffffff; }
 
-    .info-label {
-      display: block;
-      font-size: 0.85rem;
-      opacity: 0.9;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    .info-value {
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #ffffff;
-    }
-
-    /* Till Number Display */
     .till-display {
       margin-top: 12px;
       border-radius: 16px;
@@ -304,7 +240,6 @@
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
-    /* Instructions */
     .instructions {
       margin-top: 12px;
       font-size: 0.94rem;
@@ -316,7 +251,6 @@
       border: 1px solid rgba(255, 215, 0, 0.2);
     }
 
-    /* Action Buttons */
     .action-buttons {
       display: flex;
       gap: 10px;
@@ -335,38 +269,27 @@
       transition: all 0.2s ease;
       white-space: nowrap;
     }
-
-    .button:active {
-      transform: scale(0.97);
-    }
+    .button:active { transform: scale(0.97); }
 
     .button-primary {
       background: var(--accent-gold);
       color: var(--bg-tertiary);
       box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
     }
-
-    .button-primary:hover {
-      background: #ffdf33;
-      box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4);
-    }
+    .button-primary:hover { background: #ffdf33; box-shadow: 0 6px 16px rgba(255, 215, 0, 0.4); }
 
     .button-secondary {
       background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.16);
     }
-
-    .button-secondary:hover {
-      background: rgba(255, 255, 255, 0.18);
-    }
+    .button-secondary:hover { background: rgba(255, 255, 255, 0.18); }
 
     .button-success {
       background: linear-gradient(135deg, var(--accent-green), rgba(30, 181, 58, 0.88));
       color: #ffffff;
       box-shadow: 0 4px 12px rgba(30, 181, 58, 0.3);
     }
-
     .button-success:hover {
       background: linear-gradient(135deg, #22c943, var(--accent-green));
       box-shadow: 0 6px 16px rgba(30, 181, 58, 0.4);
@@ -377,13 +300,8 @@
       color: rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
+    .button-danger:hover { background: rgba(255, 100, 100, 0.2); border-color: rgba(255, 100, 100, 0.3); }
 
-    .button-danger:hover {
-      background: rgba(255, 100, 100, 0.2);
-      border-color: rgba(255, 100, 100, 0.3);
-    }
-
-    /* Toast Notification */
     .toast {
       position: fixed;
       bottom: 30px;
@@ -401,13 +319,8 @@
       z-index: 10000;
       backdrop-filter: blur(10px);
     }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Modal */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -416,16 +329,10 @@
       padding: 20px;
       z-index: 9999;
       backdrop-filter: blur(4px);
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     .modal {
-      max-width: 540px;
+      max-width: 560px;
       margin: 10vh auto;
       background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -433,42 +340,18 @@
       padding: 24px;
       backdrop-filter: blur(16px);
       box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
-      animation: slideUp 0.3s ease;
     }
 
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .modal-title {
-      font-weight: 900;
-      font-size: 1.3rem;
-      color: var(--accent-gold);
-      margin-bottom: 12px;
-    }
-
-    .modal-text {
-      line-height: 1.65;
-      opacity: 0.95;
-      margin-bottom: 18px;
-      font-size: 1rem;
-    }
+    .modal-title { font-weight: 900; font-size: 1.25rem; color: var(--accent-gold); margin-bottom: 10px; }
+    .modal-text { line-height: 1.65; opacity: 0.95; margin-bottom: 16px; font-size: 1rem; white-space: pre-line; }
 
     .modal-actions {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
-    /* Footer */
     .footer {
       text-align: center;
       padding: 16px 20px;
@@ -479,61 +362,27 @@
       letter-spacing: 0.5px;
     }
 
-    /* Responsive Design */
     @media (max-width: 860px) {
-      .content-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .amount-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .statistics {
-        grid-template-columns: 1fr;
-      }
-
-      .till-number {
-        font-size: 2rem;
-      }
-
-      .action-buttons {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .badge {
-        font-size: 0.7rem;
-        padding: 8px 12px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      .subtitle {
-        font-size: 0.95rem;
-      }
+      .content-grid { grid-template-columns: 1fr; }
+      .amount-grid { grid-template-columns: repeat(2, 1fr); }
+      .statistics { grid-template-columns: 1fr; }
+      .till-number { font-size: 2rem; }
+      .action-buttons { flex-direction: column; }
+      .button { width: 100%; }
+      .modal-actions { justify-content: center; }
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <!-- Header Section -->
     <div class="header">
       <div class="badge">🌙 RAMADAN IFTAR DRIVE • ELWAK</div>
       <h1>Feed a Fasting Family for the Sake of Allah</h1>
       <p class="subtitle">
-        Choose your contribution amount, complete payment via M-Pesa, and your participation will be automatically recorded to help us reach our goal together.
+        Choose your amount, pay via M-Pesa, then tap <b>I've Paid</b> to record your participation and update the live total.
       </p>
 
-      <!-- Statistics -->
       <div class="statistics">
         <div class="stat-card">
           <span class="stat-label">Total Raised</span>
@@ -549,7 +398,6 @@
         </div>
       </div>
 
-      <!-- Progress Bar -->
       <div class="progress-section">
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill"></div>
@@ -558,9 +406,7 @@
       </div>
     </div>
 
-    <!-- Main Content -->
     <div class="content-grid">
-      <!-- Left Panel: Amount Selection -->
       <div class="panel">
         <p class="panel-title">
           💫 "Whoever feeds a fasting person will have a reward equal to theirs, without reducing their reward in any way."
@@ -578,18 +424,17 @@
         </div>
 
         <div class="custom-input-wrapper">
-          <input 
-            id="customAmount" 
-            class="custom-input" 
-            type="number" 
-            min="1" 
-            inputmode="numeric" 
+          <input
+            id="customAmount"
+            class="custom-input"
+            type="number"
+            min="1"
+            inputmode="numeric"
             placeholder="Enter custom amount (e.g., 750)"
           />
         </div>
       </div>
 
-      <!-- Right Panel: Payment Info -->
       <div class="panel">
         <div class="info-grid">
           <div class="info-item">
@@ -608,12 +453,14 @@
         </div>
 
         <div class="instructions">
-          <strong>📱 Quick Payment:</strong> Click "Pay with M-Pesa" to open M-Pesa automatically. Complete your payment there, then return here and click "I've Paid" to confirm.
+          <strong>📱 One-tap payment help:</strong> Tap <b>Pay with M-Pesa</b>. We’ll try to open M-Pesa automatically.
+          If it doesn’t open, tap <b>Dial *334#</b> and follow the short steps.
         </div>
 
         <div class="action-buttons">
           <button class="button button-primary" onclick="initiatePayment()">💳 Pay with M-Pesa</button>
           <button class="button button-secondary" onclick="copyTillNumber()">📋 Copy Till</button>
+          <button class="button button-secondary" onclick="copyAmount()">📋 Copy Amount</button>
           <button class="button button-secondary" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
           <button class="button button-success" onclick="confirmParticipation()">I've Paid</button>
           <button class="button button-danger" onclick="resetSelection()">🔄 Reset</button>
@@ -621,42 +468,52 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <div class="footer">Ramadan • Mercy • Shared Responsibility</div>
   </div>
 
-  <!-- Toast Notification -->
   <div id="toast" class="toast"></div>
 
-  <!-- Thank You Modal -->
+  <!-- PAY HELP MODAL -->
+  <div id="payModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-title">Pay Now (Fastest Options)</div>
+      <div id="payText" class="modal-text"></div>
+      <div class="modal-actions">
+        <button class="button button-secondary" onclick="dialUSSD()">📞 Dial *334#</button>
+        <button class="button button-secondary" onclick="copyTillNumber()">📋 Copy Till</button>
+        <button class="button button-secondary" onclick="copyAmount()">📋 Copy Amount</button>
+        <button class="button button-primary" onclick="closePayModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU MODAL -->
   <div id="thanksModal" class="modal-overlay">
     <div class="modal">
       <div class="modal-title">جزاك الله خيرًا — May Allah Reward You!</div>
       <div id="thanksText" class="modal-text"></div>
       <div class="modal-actions">
         <button class="button button-secondary" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-        <button class="button button-primary" onclick="closeModal()">Close</button>
+        <button class="button button-primary" onclick="closeThanksModal()">Close</button>
       </div>
     </div>
   </div>
 
   <script>
-    // ========== CONFIGURATION ==========
     const CONFIG = {
       GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxgmGgwEFODJr3Q6K9vwz8D706EBUqhZDJqMAyoDVNdl5sspJERk40V-lDgznI8R1rJ/exec",
       TARGET_AMOUNT: 500000,
       TILL_NUMBER: "4341738",
-      WHATSAPP_NUMBER: "254727496308"
+      WHATSAPP_NUMBER: "254727496308",
+      USSD_CODE: "*334#"
     };
 
-    // ========== STATE MANAGEMENT ==========
     let state = {
       selectedAmount: null,
       reference: null,
       hasParticipated: false
     };
 
-    // ========== DOM ELEMENTS ==========
     const elements = {
       totalRaised: document.getElementById('totalRaised'),
       participants: document.getElementById('participants'),
@@ -669,10 +526,11 @@
       toast: document.getElementById('toast'),
       thanksModal: document.getElementById('thanksModal'),
       thanksText: document.getElementById('thanksText'),
-      amountButtons: document.querySelectorAll('.amount-button')
+      amountButtons: document.querySelectorAll('.amount-button'),
+      payModal: document.getElementById('payModal'),
+      payText: document.getElementById('payText')
     };
 
-    // ========== UTILITY FUNCTIONS ==========
     function generateReference() {
       const date = new Date();
       const year = String(date.getFullYear()).slice(2);
@@ -686,16 +544,14 @@
       return `KSh ${Number(amount).toLocaleString()}`;
     }
 
-    function showToast(message, duration = 2800) {
+    function showToast(message, duration = 2600) {
       elements.toast.textContent = message;
       elements.toast.classList.add('show');
-      setTimeout(() => {
-        elements.toast.classList.remove('show');
-      }, duration);
+      setTimeout(() => elements.toast.classList.remove('show'), duration);
     }
 
     function saveToLocalStorage() {
-      localStorage.setItem('elwak_amount', String(state.selectedAmount || ''));
+      localStorage.setItem('elwak_amount', String(state.selectedAmount ?? ''));
       localStorage.setItem('elwak_reference', state.reference || '');
       localStorage.setItem('elwak_participated', String(state.hasParticipated));
     }
@@ -718,18 +574,16 @@
       state.hasParticipated = savedParticipation;
     }
 
-    // ========== AMOUNT SELECTION ==========
     function setAmount(amount) {
       state.selectedAmount = amount;
       state.reference = generateReference();
-      
+
       elements.selectedAmount.textContent = formatCurrency(amount);
       elements.reference.textContent = state.reference;
-      
+
       saveToLocalStorage();
     }
 
-    // Amount button click handlers
     elements.amountButtons.forEach(button => {
       button.addEventListener('click', () => {
         elements.amountButtons.forEach(btn => btn.classList.remove('selected'));
@@ -751,114 +605,138 @@
       });
     });
 
-    // Custom amount input handler
     elements.customAmount.addEventListener('input', (e) => {
       const value = Number(e.target.value);
-      
       if (value > 0) {
         elements.amountButtons.forEach(btn => btn.classList.remove('selected'));
         setAmount(value);
       }
     });
 
-    // ========== PAYMENT FUNCTIONS ==========
+    async function copyText(txt, successMsg) {
+      try {
+        await navigator.clipboard.writeText(txt);
+        showToast(successMsg);
+        return true;
+      } catch {
+        showToast("Copy failed — please copy manually.");
+        return false;
+      }
+    }
+
     function copyTillNumber() {
-      navigator.clipboard.writeText(CONFIG.TILL_NUMBER)
-        .then(() => showToast(`✅ Till number ${CONFIG.TILL_NUMBER} copied to clipboard`))
-        .catch(() => showToast('❌ Failed to copy. Please copy manually: ' + CONFIG.TILL_NUMBER));
+      return copyText(CONFIG.TILL_NUMBER, `✅ Till copied: ${CONFIG.TILL_NUMBER}`);
+    }
+
+    function copyAmount() {
+      const amount = state.selectedAmount || Number(localStorage.getItem('elwak_amount'));
+      if (!amount) return showToast('⚠️ Select an amount first');
+      return copyText(String(amount), `✅ Amount copied: KSh ${Number(amount).toLocaleString()}`);
+    }
+
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
+
+    // Best-effort attempt to open M-Pesa app (Android). Not guaranteed on all browsers.
+    function tryOpenMpesaApp() {
+      const pkg = "com.safaricom.mpesa.lifestyle";
+      const intentUrl = `intent://#Intent;package=${pkg};end`;
+      window.location.href = intentUrl;
+    }
+
+    function dialUSSD() {
+      // Opens dialer with *334# (user taps Call)
+      window.location.href = "tel:*334%23";
+    }
+
+    function openPayModal(text) {
+      elements.payText.textContent = text;
+      elements.payModal.style.display = "block";
+    }
+
+    function closePayModal() {
+      elements.payModal.style.display = "none";
+    }
+
+    function closeThanksModal() {
+      elements.thanksModal.style.display = "none";
     }
 
     function initiatePayment() {
       const amount = state.selectedAmount || Number(localStorage.getItem('elwak_amount'));
-      const reference = state.reference || localStorage.getItem('elwak_reference');
+      const reference = state.reference || localStorage.getItem('elwak_reference') || generateReference();
 
       if (!amount) {
         showToast('⚠️ Please select an amount first');
         return;
       }
 
-      // Save state before they leave
+      // Save selection so they can return without losing it
+      state.reference = reference;
       saveToLocalStorage();
 
-      // Copy till number to clipboard
-      navigator.clipboard.writeText(CONFIG.TILL_NUMBER)
-        .then(() => {
-          showToast('✅ Till number copied: ' + CONFIG.TILL_NUMBER);
-        })
-        .catch(() => {
-          showToast('📋 Ready to pay!');
-        });
+      // Copy till + amount (reduces friction)
+      copyTillNumber();
+      copyAmount();
 
-      // Show simple, clear payment instructions
+      // Try open M-Pesa app on Android (best effort)
+      if (isAndroid()) {
+        // Small delay so copy happens first
+        setTimeout(() => { tryOpenMpesaApp(); }, 120);
+      }
+
+      // Always show fallback modal (so even if app doesn't open, they can continue instantly)
       setTimeout(() => {
-        alert(
-`💰 READY TO PAY
+        openPayModal(
+`FASTEST OPTIONS
 
-Till Number: ${CONFIG.TILL_NUMBER} ✅ COPIED!
-Amount: KSh ${amount.toLocaleString()}
-Reference: ${reference}
+A) If M-Pesa app / SIM Toolkit opened:
+• Lipa na M-Pesa → Buy Goods
+• Till: ${CONFIG.TILL_NUMBER}
+• Amount: KSh ${Number(amount).toLocaleString()}
+• Enter PIN
 
-🔹 OPEN M-PESA NOW:
-   • M-Pesa App users: Open your M-Pesa app
-   • SIM Toolkit users: Go to SIM Toolkit → M-Pesa
+B) If it did NOT open:
+• Tap “Dial *334#” below
+• Select Lipa na M-Pesa → Buy Goods
+• Enter Till: ${CONFIG.TILL_NUMBER}
+• Enter Amount: KSh ${Number(amount).toLocaleString()}
+• Enter PIN
 
-🔹 THEN FOLLOW:
-   1. Lipa na M-Pesa
-   2. Buy Goods and Services
-   3. Enter Till: ${CONFIG.TILL_NUMBER} (paste it!)
-   4. Enter Amount: ${amount}
-   5. Enter PIN → Confirm
-
-✅ After payment, RETURN HERE and click "I've Paid"
-
-Your selection is saved - you won't lose it!`
+Reference: ${reference}`
         );
-      }, 400);
+      }, 500);
     }
 
     function shareOnWhatsApp() {
       const message = `🌙 RAMADAN IFTAR DRIVE | ELWAK
 
-Feed a fasting family for the sake of Allah and earn immense rewards!
+Feed a fasting family for the sake of Allah and earn immense rewards.
 
-💰 Target: ${formatCurrency(CONFIG.TARGET_AMOUNT)}
-📍 Till Number: ${CONFIG.TILL_NUMBER}
+📍 Buy Goods Till: ${CONFIG.TILL_NUMBER}
+🎯 Target: ${formatCurrency(CONFIG.TARGET_AMOUNT)}
 
-Join us: ${window.location.href}
-
-"Whoever feeds a fasting person will have a reward equal to theirs, without reducing their reward in any way." 🤲`;
-
+Join & contribute here: ${window.location.href}`;
       window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
     }
 
-    // ========== PARTICIPATION TRACKING ==========
     async function confirmParticipation() {
       const amount = state.selectedAmount || Number(localStorage.getItem('elwak_amount'));
       const reference = state.reference || localStorage.getItem('elwak_reference');
 
-      if (!amount) {
-        showToast('⚠️ Please select an amount first');
-        return;
-      }
+      if (!amount) return showToast('⚠️ Please select an amount first');
+      if (state.hasParticipated) return showToast('✅ Already recorded on this device');
 
-      if (state.hasParticipated) {
-        showToast('✅ You have already recorded your participation');
-        return;
-      }
-
-      // Show loading state
       showToast('📝 Recording your participation...');
 
       try {
-        // Create abort controller for timeout
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
 
         const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
           method: 'POST',
-          headers: { 
-            'Content-Type': 'text/plain' // Changed from application/json to avoid CORS preflight
-          },
+          headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({
             amount: amount,
             ref: reference,
@@ -868,76 +746,39 @@ Join us: ${window.location.href}
         });
 
         clearTimeout(timeoutId);
-
-        // Check if response is ok
-        if (!response.ok) {
-          throw new Error(`Server returned ${response.status}: ${response.statusText}`);
-        }
+        if (!response.ok) throw new Error(`Server returned ${response.status}`);
 
         const data = await response.json();
+        if (!data || !data.ok) throw new Error('Server response indicates failure');
 
-        if (data && data.ok) {
-          state.hasParticipated = true;
-          saveToLocalStorage();
-          
-          showToast('✅ Participation recorded successfully!');
-          
-          elements.thanksText.textContent = `Your contribution of ${formatCurrency(amount)} has been recorded. May Allah accept your charity and multiply your reward in this blessed month. جزاك الله خيرًا`;
-          elements.thanksModal.style.display = 'block';
-          
-          // Refresh statistics
-          setTimeout(() => refreshStatistics(), 500);
-        } else {
-          throw new Error('Server response indicates failure');
-        }
+        state.hasParticipated = true;
+        saveToLocalStorage();
+
+        showToast('✅ Recorded successfully!');
+        elements.thanksText.textContent =
+          `Your participation of ${formatCurrency(amount)} has been recorded.\nMay Allah accept it and multiply your reward.`;
+
+        elements.thanksModal.style.display = 'block';
+        setTimeout(() => refreshStatistics(), 500);
+
       } catch (error) {
-        console.error('Participation error:', error);
-        
-        // Provide helpful error messages
-        if (error.name === 'AbortError') {
-          showToast('❌ Request timed out. Please check your internet connection.');
-        } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-          showToast('❌ Cannot connect to server. Please check your internet connection.');
-        } else if (error.message.includes('CORS')) {
-          // This means the Google Apps Script needs to be deployed as a web app with proper access
-          showToast('❌ Server configuration error. Please contact the administrator.');
-        } else {
-          showToast('❌ Error: ' + error.message);
-        }
-        
-        // Log detailed error for debugging
-        console.log('Full error details:', {
-          message: error.message,
-          name: error.name,
-          stack: error.stack
-        });
+        if (error.name === 'AbortError') showToast('❌ Timed out. Check your internet.');
+        else showToast('❌ Could not record. Try again.');
       }
     }
 
-    // ========== STATISTICS MANAGEMENT ==========
     async function refreshStatistics() {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
 
-        const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, { 
-          method: 'GET',
-          signal: controller.signal
-        });
-
+        const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, { method: 'GET', signal: controller.signal });
         clearTimeout(timeoutId);
 
-        if (!response.ok) {
-          console.error('Statistics refresh failed:', response.status);
-          return;
-        }
+        if (!response.ok) return;
 
         const data = await response.json();
-
-        if (!data || !data.ok) {
-          console.error('Invalid statistics data received');
-          return;
-        }
+        if (!data || !data.ok) return;
 
         const totalRaised = Number(data.total || 0);
         const participantCount = Number(data.count || 0);
@@ -950,22 +791,11 @@ Join us: ${window.location.href}
         elements.progressFill.style.width = `${percentage.toFixed(1)}%`;
         elements.progressText.textContent = `${percentage.toFixed(1)}% of target reached`;
 
-      } catch (error) {
-        // Silently fail for statistics refresh - don't bother the user
-        console.error('Statistics refresh error:', error.name, error.message);
-      }
+      } catch {}
     }
 
-    // ========== MODAL FUNCTIONS ==========
-    function closeModal() {
-      elements.thanksModal.style.display = 'none';
-    }
-
-    // ========== RESET FUNCTION ==========
     function resetSelection() {
-      if (!confirm('Are you sure you want to reset your selection?')) {
-        return;
-      }
+      if (!confirm('Reset your selection on this device?')) return;
 
       state.selectedAmount = null;
       state.reference = null;
@@ -980,19 +810,19 @@ Join us: ${window.location.href}
       localStorage.removeItem('elwak_reference');
       localStorage.removeItem('elwak_participated');
 
-      showToast('🔄 Selection reset successfully');
+      showToast('🔄 Reset done');
     }
 
-    // ========== INITIALIZATION ==========
     function initialize() {
       loadFromLocalStorage();
       refreshStatistics();
-      
-      // Refresh statistics every 30 seconds
       setInterval(refreshStatistics, 30000);
+
+      // Close modals if user taps outside
+      elements.payModal.addEventListener('click', (e) => { if (e.target === elements.payModal) closePayModal(); });
+      elements.thanksModal.addEventListener('click', (e) => { if (e.target === elements.thanksModal) closeThanksModal(); });
     }
 
-    // Start the application
     initialize();
   </script>
 </body>
